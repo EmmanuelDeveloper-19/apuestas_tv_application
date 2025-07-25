@@ -1,0 +1,123 @@
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="6dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="16dp">
+
+        <!-- Logo equipo A -->
+        <ImageView
+            android:id="@+id/team_a_logo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/team_a_logo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Nombre equipo A -->
+        <TextView
+            android:id="@+id/team_a_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="FC Águilas"
+            android:textColor="#333333"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/team_a_logo"
+            app:layout_constraintStart_toEndOf="@id/team_a_logo"
+            app:layout_constraintTop_toTopOf="@id/team_a_logo" />
+
+        <!-- Texto VS -->
+        <TextView
+            android:id="@+id/vs_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="VS"
+            android:textColor="#666666"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/team_a_logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Logo equipo B -->
+        <ImageView
+            android:id="@+id/team_b_logo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/team_b_logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/vs_text"
+            app:layout_constraintTop_toTopOf="@id/team_a_logo" />
+
+        <!-- Nombre equipo B -->
+        <TextView
+            android:id="@+id/team_b_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Tigres FC"
+            android:textColor="#333333"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/team_b_logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/team_b_logo"
+            app:layout_constraintTop_toTopOf="@id/team_b_logo" />
+
+        <!-- Cadena horizontal para alinear todos -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/center_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <!-- Monto -->
+        <TextView
+            android:id="@+id/bet_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Monto de Apuestas: $2500"
+            android:textColor="#666666"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/team_a_logo" />
+
+        <!-- Botón -->
+        <Button
+            android:id="@+id/btn_bet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/button_hover_effect"
+            android:minHeight="0dp"
+            android:paddingStart="28dp"
+            android:paddingEnd="28dp"
+            android:text="Apostar"
+            android:textColor="#ffffff"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bet_amount" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
