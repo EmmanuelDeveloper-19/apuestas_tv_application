@@ -33,11 +33,13 @@ dependencies {
     implementation(libs.androidx.appcompat)
 
     // Dependencias adicionales necesarias para Android TV
-    implementation("com.google.android.material:material:1.12.0")
+    implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+
 
     // Dependencia específica para Android TV
     implementation("androidx.leanback:leanback:1.0.0")
+    implementation(libs.material)
 
     // Dependencias de prueba (opcionales)
     testImplementation("junit:junit:4.13.2")

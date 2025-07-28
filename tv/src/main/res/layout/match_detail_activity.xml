@@ -1,60 +1,332 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MatchDetailActivity"
-    android:padding="16dp">
+    android:background="#f0f0f0"
+    tools:context=".MatchDetailActivity">
 
-    <TextView
-        android:id="@+id/detail_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="24sp"
-        android:textColor="#333333"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#df2531"
+        android:elevation="4dp"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="Detalles del Partido"/>
-
-    <TextView
-        android:id="@+id/detail_match_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        app:layout_constraintTop_toBottomOf="@id/detail_title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="FC Águilas vs Tigres FC"/>
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/detail_bet_amount"
-        android:layout_width="0dp"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="TvApuestas"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingEnd="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:text="Saldo: $1,000"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:text="Usuario"
+                android:textColor="#ffffff" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/icon_person"
+                app:tint="#ffffff" />
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:padding="26dp">
+
+            <ImageView
+                android:id="@+id/team_a_logo"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/team_a_logo"
+                app:layout_constraintEnd_toStartOf="@id/vs_text"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/team_a_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FC Águilas"
+                android:layout_marginTop="8dp"
+
+                android:textColor="#333333"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/team_a_logo"
+                app:layout_constraintStart_toStartOf="@id/team_a_logo"
+                app:layout_constraintTop_toBottomOf="@id/team_a_logo" />
+
+            <TextView
+                android:id="@+id/team_a_victories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Victorias: 0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/team_a_empates"
+                app:layout_constraintTop_toBottomOf="@id/team_a_name" />
+
+            <TextView
+                android:id="@+id/team_a_empates"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Empates: 0"
+                app:layout_constraintEnd_toStartOf="@id/team_a_derrotas"
+                app:layout_constraintStart_toEndOf="@id/team_a_victories"
+                app:layout_constraintTop_toBottomOf="@id/team_a_name" />
+
+            <TextView
+                android:id="@+id/team_a_derrotas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Derrotas: 0"
+                app:layout_constraintTop_toBottomOf="@+id/team_a_name"
+                app:layout_constraintStart_toEndOf="@id/team_a_empates"
+                app:layout_constraintEnd_toStartOf="@+id/vs_text"/>
+
+
+            <HorizontalScrollView
+                android:id="@+id/hsv_team_a"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="40dp"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                app:layout_constraintEnd_toStartOf="@id/vs_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/team_a_victories">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:text="Botón A1" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:text="Botón A2" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:text="Botón A3" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Botón A4" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+
+            <TextView
+                android:id="@+id/vs_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:text="VS"
+                android:textColor="#666666"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/team_a_logo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/team_a_logo" />
+
+            <ImageView
+                android:id="@+id/team_b_logo"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/team_b_logo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@id/vs_text"
+                app:layout_constraintTop_toTopOf="@id/team_a_logo" />
+
+            <TextView
+                android:id="@+id/team_b_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Tigres"
+                android:textColor="#333333"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/team_b_logo"
+                app:layout_constraintStart_toStartOf="@id/team_b_logo"
+                app:layout_constraintTop_toBottomOf="@id/team_b_logo" />
+
+            <TextView
+                android:id="@+id/team_b_victories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Victorias: 0"
+                app:layout_constraintStart_toEndOf="@id/vs_text"
+                app:layout_constraintTop_toBottomOf="@id/team_b_name" />
+
+            <TextView
+                android:id="@+id/team_b_empates"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Empates: 0"
+                app:layout_constraintEnd_toStartOf="@id/team_b_derrotas"
+                app:layout_constraintStart_toEndOf="@id/team_b_victories"
+                app:layout_constraintTop_toBottomOf="@id/team_b_name" />
+
+            <TextView
+                android:id="@+id/team_b_derrotas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Derrotas: 0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/team_b_empates"
+                app:layout_constraintTop_toBottomOf="@+id/team_b_name" />
+
+
+
+            <HorizontalScrollView
+                android:id="@+id/hsv_team_b"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="16dp"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/vs_text"
+                app:layout_constraintTop_toBottomOf="@id/team_b_victories">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:text="Botón B1" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:text="Botón B2" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:text="Botón B3" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Botón B4" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+    <LinearLayout
+        android:id="@+id/bottom_sheet_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textSize="16sp"
-        android:textColor="#666666"
-        app:layout_constraintTop_toBottomOf="@id/detail_match_name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Monto de Apuestas: $2500"/>
+        android:background="@drawable/bg_bottom_sheet"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-    <TextView
-        android:id="@+id/detail_description"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textSize="16sp"
-        android:textColor="#333333"
-        app:layout_constraintTop_toBottomOf="@id/detail_bet_amount"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Este es un partido clave de la jornada. Ambos equipos vienen con buen ritmo y se espera un encuentro lleno de emoción."/>
+        <TextView
+            android:id="@+id/bottom_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:text="Información adicional"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/bottom_description_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Momentos clave del partido"/>
+
+        <HorizontalScrollView
+            android:id="@+id/videos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:scrollbars="none"
+            android:overScrollMode="never">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <VideoView
+                    android:id="@+id/richardVideo"
+                    android:layout_width="300dp"
+                    android:layout_height="200dp" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+
+        <Button
+            android:id="@+id/close_bottom_sheet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Cerrar" />
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
