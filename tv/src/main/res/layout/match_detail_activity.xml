@@ -35,18 +35,19 @@
             android:paddingEnd="16dp">
 
             <TextView
+                android:id="@+id/saldo_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
                 android:text="Saldo: $1,000"
-                android:textColor="#ffffff" />
+                android:layout_marginRight="20dp"/>
 
             <TextView
+                android:id="@+id/name_user"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
                 android:text="Usuario"
-                android:textColor="#ffffff" />
+                android:layout_marginRight="20dp"/>
+
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -82,8 +83,8 @@
                 android:id="@+id/team_a_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="FC Águilas"
                 android:layout_marginTop="8dp"
+                android:text="FC Águilas"
 
                 android:textColor="#333333"
                 android:textSize="28sp"
@@ -97,8 +98,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Victorias: 0"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/team_a_empates"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/team_a_name" />
 
             <TextView
@@ -115,14 +116,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Derrotas: 0"
-                app:layout_constraintTop_toBottomOf="@+id/team_a_name"
+                app:layout_constraintEnd_toStartOf="@+id/vs_text"
                 app:layout_constraintStart_toEndOf="@id/team_a_empates"
-                app:layout_constraintEnd_toStartOf="@+id/vs_text"/>
+                app:layout_constraintTop_toBottomOf="@+id/team_a_name" />
 
 
             <HorizontalScrollView
                 android:id="@+id/hsv_team_a"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="40dp"
@@ -138,27 +139,25 @@
                     android:orientation="horizontal">
 
                     <Button
+                        android:id="@+id/btn_team_a_apuesta"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
-                        android:text="Botón A1" />
+                        android:backgroundTint="#008000"
+                        android:drawableStart="@drawable/outline_add_24"
+                        android:drawablePadding="8dp"
+                        android:text="200"
+                        android:textColor="#ffff" />
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:text="Botón A2" />
+                    <ImageButton
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/minus"
+                        android:scaleType="fitCenter"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="Menos" />
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:text="Botón A3" />
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Botón A4" />
                 </LinearLayout>
             </HorizontalScrollView>
 
@@ -228,10 +227,9 @@
                 app:layout_constraintTop_toBottomOf="@+id/team_b_name" />
 
 
-
             <HorizontalScrollView
                 android:id="@+id/hsv_team_b"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="16dp"
@@ -247,27 +245,25 @@
                     android:orientation="horizontal">
 
                     <Button
+                        android:id="@+id/btn_team_b_apuesta"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
-                        android:text="Botón B1" />
+                        android:backgroundTint="#008000"
+                        android:drawableStart="@drawable/outline_add_24"
+                        android:drawablePadding="8dp"
+                        android:text="200"
+                        android:textColor="#ffff" />
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:text="Botón B2" />
+                    <ImageButton
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/minus"
+                        android:scaleType="fitCenter"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="Menos" />
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:text="Botón B3" />
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Botón B4" />
                 </LinearLayout>
             </HorizontalScrollView>
 
@@ -298,15 +294,15 @@
             android:id="@+id/bottom_description_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Momentos clave del partido"/>
+            android:text="Momentos clave del partido" />
 
         <HorizontalScrollView
             android:id="@+id/videos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:scrollbars="none"
-            android:overScrollMode="never">
+            android:overScrollMode="never"
+            android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="wrap_content"

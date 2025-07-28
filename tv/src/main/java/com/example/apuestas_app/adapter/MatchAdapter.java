@@ -17,73 +17,59 @@ import com.example.apuestas_app.R;
 import com.example.apuestas_app.models.Match;
 
 import java.util.List;
+import java.util.Locale;
 
 public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHolder> {
 
-    private List<Match> matchList;
-    private Context context;
+    private final List<Match> matchList;
+    private final Context context;
 
-    public MatchAdapter(Context context, List<Match> matchList){
+    public MatchAdapter(Context context, List<Match> matchList) {
         this.context = context;
         this.matchList = matchList;
     }
 
     @NonNull
     @Override
-    public MatchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
+    public MatchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_match, parent, false);
         return new MatchViewHolder(view);
     }
 
-    // Este método es llamado por el RecyclerView para mostrar los datos en una posición específica
-    // Vincula los datos del objeto Match a las vistas del layout item_match.xml
     @Override
     public void onBindViewHolder(@NonNull MatchViewHolder holder, int position) {
         Match currentMatch = matchList.get(position);
 
+        // Asignamos datos a las vistas
         holder.teamALogo.setImageResource(currentMatch.getTeamALogoResId());
         holder.teamAName.setText(currentMatch.getTeamAName());
         holder.teamBLogo.setImageResource(currentMatch.getTeamBLogoResId());
         holder.teamBName.setText(currentMatch.getTeamBName());
-        holder.betAmount.setText("Monto de Apuestas: $" + String.format("%.0f", currentMatch.getBetAmount())); // Formatea el double sin decimales
+        holder.betAmount.setText(String.format(Locale.getDefault(), "Monto de Apuestas: $%.0f", currentMatch.getBetAmount()));
 
-        // Manejar el clic en el botón "Apostar"
-        holder.btnBet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Lanzar la MatchDetailActivity y pasar el objeto Match
-                Intent intent = new Intent(context, MatchDetailActivity.class);
-                intent.putExtra("selected_match", currentMatch); // "selected_match" es la clave para recuperar el objeto
-                context.startActivity(intent);
-            }
-        });
+        // Listener para abrir detalles
+        View.OnClickListener openDetail = v -> {
+            Intent intent = new Intent(context, MatchDetailActivity.class);
+            intent.putExtra("match", currentMatch);
+            context.startActivity(intent);
+        };
 
-        // Opcional: Manejar el clic en toda la tarjeta (CardView) si quieres que también lleve a los detalles
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, MatchDetailActivity.class);
-                intent.putExtra("selected_match", currentMatch);
-                context.startActivity(intent);
-            }
-        });
+        // Asignamos el mismo listener al botón y al card
+        holder.btnBet.setOnClickListener(openDetail);
+        holder.itemView.setOnClickListener(openDetail);
     }
 
-    // Retorna el número total de ítems en la lista de datos
     @Override
     public int getItemCount() {
         return matchList.size();
     }
 
-    public static class MatchViewHolder extends RecyclerView.ViewHolder{
-        ImageView teamALogo;
-        TextView teamAName;
-        ImageView teamBLogo;
-        TextView teamBName;
-        TextView betAmount;
+    public static class MatchViewHolder extends RecyclerView.ViewHolder {
+        ImageView teamALogo, teamBLogo;
+        TextView teamAName, teamBName, betAmount;
         Button btnBet;
 
-        public MatchViewHolder(@NonNull View itemView){
+        public MatchViewHolder(@NonNull View itemView) {
             super(itemView);
             teamALogo = itemView.findViewById(R.id.team_a_logo);
             teamAName = itemView.findViewById(R.id.team_a_name);
@@ -94,4 +80,3 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
         }
     }
 }
-

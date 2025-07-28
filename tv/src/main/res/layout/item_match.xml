@@ -3,10 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
-    android:layout_marginStart="8dp"
-    android:layout_marginEnd="8dp"
-    app:cardCornerRadius="10dp"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
     app:cardElevation="6dp"
     android:clickable="true"
     android:focusable="true"
@@ -14,29 +12,26 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <!-- Logo equipo A -->
+        <!-- Logo A -->
         <ImageView
             android:id="@+id/team_a_logo"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/team_a_logo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Nombre equipo A -->
+        <!-- Nombre A -->
         <TextView
             android:id="@+id/team_a_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="FC Águilas"
-            android:textColor="#333333"
-            android:textSize="18sp"
+            android:text="Equipo A"
+            android:textColor="#333"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/team_a_logo"
             app:layout_constraintStart_toEndOf="@id/team_a_logo"
@@ -47,77 +42,61 @@
             android:id="@+id/vs_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
             android:text="VS"
-            android:textColor="#666666"
-            android:textSize="20sp"
+            android:textColor="#666"
+            android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/team_a_logo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@id/team_a_name"
+            app:layout_constraintEnd_toStartOf="@id/team_b_name"
+            app:layout_constraintTop_toTopOf="@id/team_a_name"
+            app:layout_constraintBottom_toBottomOf="@id/team_a_name"
+            app:layout_constraintHorizontal_chainStyle="packed" />
 
-        <!-- Logo equipo B -->
+        <!-- Logo B -->
         <ImageView
             android:id="@+id/team_b_logo"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/team_b_logo"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/vs_text"
-            app:layout_constraintTop_toTopOf="@id/team_a_logo" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Nombre equipo B -->
+        <!-- Nombre B -->
         <TextView
             android:id="@+id/team_b_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="Tigres FC"
-            android:textColor="#333333"
-            android:textSize="18sp"
+            android:layout_marginEnd="8dp"
+            android:text="Equipo B"
+            android:textColor="#333"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/team_b_logo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/team_b_logo"
+            app:layout_constraintEnd_toStartOf="@id/team_b_logo"
             app:layout_constraintTop_toTopOf="@id/team_b_logo" />
-
-        <!-- Cadena horizontal para alinear todos -->
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/center_guide"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5" />
 
         <!-- Monto -->
         <TextView
             android:id="@+id/bet_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Monto de Apuestas: $2500"
-            android:textColor="#666666"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/team_a_logo" />
+            android:layout_marginTop="12dp"
+            android:text="Monto de Apuestas: $0"
+            android:textColor="#444"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/team_a_logo"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <!-- Botón -->
         <Button
             android:id="@+id/btn_bet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/button_hover_effect"
-            android:minHeight="0dp"
-            android:paddingStart="28dp"
-            android:paddingEnd="28dp"
+            android:layout_marginTop="8dp"
             android:text="Apostar"
-            android:textColor="#ffffff"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/bet_amount" />
+            android:textColor="@android:color/white"
+            android:backgroundTint="#FF0000"
+            app:layout_constraintTop_toBottomOf="@id/bet_amount"
+            app:layout_constraintEnd_toEndOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
